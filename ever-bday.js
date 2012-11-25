@@ -13,8 +13,11 @@
 // Run this script through the phantomjs binary: /path/phantomjs ever-bday/ever-bday.js
 //
 // Ok have fun now! Let me know if you're using this for something. fredrik.safsten@gmail.com
-
-
+//
+// 1) TODO: Log out first if already logged in.
+// 2) Cleanup messy code, especially the ridiculus 25 second limit
+// 3) Procrastinate
+//
 var system = require('system');
 
 // CONFIGURATION
