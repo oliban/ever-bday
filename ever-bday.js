@@ -38,6 +38,9 @@ page.onLoadFinished = function() {
 
 var steps = [
   function() {
+    var today = new Date();
+    console.log("----------------------------------------");
+    console.log(today.toString());
     console.log("Loading facebook.com...");
     page.open("http://facebook.com");
   }, function() {
@@ -72,30 +75,37 @@ var steps = [
 
 		setTimeout (function() {
     			console.log("Looking for stuffs");
-        		console.log(document.querySelector("#birthday_day").value);
-        		document.querySelector("#birthday_day").value = 30;
-        		console.log(document.querySelector("#birthday_day").value);
-		
+        		var day = document.querySelector("#birthday_day");
+			if (day.getAttribute("disabled") == 1) {
+				console.log('Cannot change.. Aborting.');
+				return false;
+			}
+			console.log("Ok.. we're good.. let's rumble!");
+			
+			var today = new Date();
+			var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+			console.log("New birthday: " +tomorrow);
+
+			var tomorrowDay = tomorrow.getDate().toString();
+                        var tomorrowMonth = tomorrow.getMonth().toString();
+                        var tomorrowYear = tomorrow.getFullYear().toString();
+
+        		document.querySelector("#birthday_day").value = tomorrowDay;
+        		document.querySelector("#birthday_month").value = tomorrowMonth;
+        		document.querySelector("#birthday_year").value = tomorrowYear;
+	
+			console.log("Changing b-day to " + tomorrowDay + "-" + tomorrowMonth + "-" + tomorrowYear);
+	
 			var a = document.querySelector("table.uiGrid input[name=save]");
-			console.log("mupp");
-			console.log(a.value);
 			var f = document.createEvent('MouseEvents');
   			f.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-			console.log("Dispatching");
 			a.dispatchEvent(f);
-
-
-		}, 1000);
-
-
-		phantom.exit();
-
+			return true;
+		}, 1500);
+		
         });
       });
-    }, function() {
-	console.log("Test");	
-    }
-];
+}];
 
 interval = setInterval(function() {
   if (!loadInProgress && typeof steps[testindex] == "function") {
@@ -105,6 +115,9 @@ interval = setInterval(function() {
   }
   if (typeof steps[testindex] != "function") {
     clearInterval(interval);
-    // phantom.exit();
+    setTimeout (function() {
+    	console.log("The party is over, good bye!");
+	phantom.exit();
+    }, 25000);
   }
-}, 50);
+}, 500);
