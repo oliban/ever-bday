@@ -1,3 +1,20 @@
+// This is my first github project
+// Also note that I am not very good at js so use at your own risk.
+// The Facebook login stuff was shamelessly copied from kdar's fbpoke project at https://github.com/kdar/fbpoke.git so all creds with the login goes to him.
+// Running this requires phantomjs that can be found here: https://github.com/ariya/phantomjs.git
+// 
+// So.. what does this baby do?
+// It logs you into your Facebook account and changes your birthday to tomorrows date.
+// I figured it would be fun to have a birthday every day.
+// However, Facebook restricts the changing of birthday.. not sure yet how long you have to wait until you can change it again but I'm sure to find out now since I have this script that my crontab runs every day.
+// I'll update these docs when I know.
+//
+// Installing: Install phantomjs and make sure you have a binary.
+// Run this script through the phantomjs binary: /path/phantomjs ever-bday/ever-bday.js
+//
+// Ok have fun now! Let me know if you're using this for something. fredrik.safsten@gmail.com
+
+
 var system = require('system');
 
 // CONFIGURATION
