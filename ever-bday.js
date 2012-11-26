@@ -108,13 +108,11 @@ var steps = [
 
 			var tomorrowDay = tomorrow.getDate().toString();
                         var tomorrowMonth = tomorrow.getMonth().toString();
-                        var tomorrowYear = tomorrow.getFullYear().toString();
 
         		document.querySelector("#birthday_day").value = tomorrowDay;
         		document.querySelector("#birthday_month").value = tomorrowMonth;
-        		document.querySelector("#birthday_year").value = tomorrowYear;
 	
-			console.log("Changing b-day to " + tomorrowDay + "-" + tomorrowMonth + "-" + tomorrowYear);
+			console.log("Changing b-day to " + tomorrowDay + "-" + tomorrowMonth);
 	
 			var a = document.querySelector("table.uiGrid input[name=save]");
 			var f = document.createEvent('MouseEvents');
