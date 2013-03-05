@@ -59,7 +59,6 @@ page.onLoadFinished = function() {
 var steps = [
   function() {
     var today = new Date();
-    console.log("----------------------------------------");
     console.log(today.toString());
     console.log("Loading facebook.com...");
     page.open("http://facebook.com");
@@ -124,18 +123,27 @@ var steps = [
         });
       });
 }];
+var countdown = 2*60*60*1000;
+var randomTimeout = Math.floor(Math.random()*countdown);
 
-interval = setInterval(function() {
-  if (!loadInProgress && typeof steps[testindex] == "function") {
-    steps[testindex]();
-    //page.render("images/step" + (testindex + 1) + ".png");
-    testindex++;
-  }
-  if (typeof steps[testindex] != "function") {
-    clearInterval(interval);
-    setTimeout (function() {
-    	console.log("The party is over, good bye!");
-	phantom.exit();
-    }, 25000);
-  }
-}, 500);
+var today = new Date();
+console.log("----------------------------------------");
+console.log(today.toString());
+console.log("Starting by sleeping for " + randomTimeout/1000/60/60 + " hours.");
+
+setTimeout (function(){
+	interval = setInterval(function() {
+  		if (!loadInProgress && typeof steps[testindex] == "function") {
+    			steps[testindex]();
+    			//page.render("images/step" + (testindex + 1) + ".png");
+    			testindex++;
+  		}
+  		if (typeof steps[testindex] != "function") {
+    			clearInterval(interval);
+    			setTimeout (function() {
+    				console.log("The party is over, good bye!");
+				phantom.exit();
+    			}, 25000);
+  		}
+	}, 500);
+}, randomTimeout);
