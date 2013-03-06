@@ -9,8 +9,10 @@ page.onConsoleMessage = function(msg) {
 page.open("http://facebook.com", function(status) {
     if ( status === "success" ) {
         page.evaluate(function() {
-              document.querySelector("input[name='email']").value = "urgas";
-              document.querySelector("input[name='pass']").value = "apedick";
+		// Yes, these are fake credentials but feel free to test me on that. :)
+		// No, the creds in the inital commit won't work either. :)
+              document.querySelector("input[name='email']").value = "yolo";
+              document.querySelector("input[name='pass']").value = "fakepass";
               document.querySelector("#login_form").submit();
               console.log("Login submitted!");
         });
